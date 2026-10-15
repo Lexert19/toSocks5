@@ -1,0 +1,13 @@
+services:
+  warp-socks:
+    image: caomingjun/warp
+    container_name: warp-socks
+    restart: always
+    mem_limit: 128m
+    mem_swap_limit: 128m
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    ports:
+      - "11080:1080"
