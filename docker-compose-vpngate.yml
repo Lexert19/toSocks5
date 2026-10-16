@@ -1,0 +1,15 @@
+services:
+  vpngate-socks:
+    image: mocasus/vpnx:latest
+    container_name: vpngate-socks
+    restart: unless-stopped
+    mem_limit: 128m
+    mem_swap_limit: 128m
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    ports:
+      - "11080:1080"
+    environment:
+      - API_TOKEN=twoj_tajny_token_123
