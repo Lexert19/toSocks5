@@ -10,4 +10,6 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     ports:
-      - "11080:1080"
+      - "11081:1080"
+    environment:
+      - GOST_ARGS=-L socks5://${WARP_SOCKS_USER}:${WARP_SOCKS_PASS}@:1080

@@ -12,4 +12,6 @@ services:
     ports:
       - "11080:1080"
     environment:
-      - API_TOKEN=twoj_tajny_token_123
+      - API_TOKEN=${VPNX_API_TOKEN}
+      - SOCKS_USER=${VPNX_SOCKS_USER}
+      - SOCKS_PASS=${VPNX_SOCKS_PASS}
