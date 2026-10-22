@@ -1,0 +1,23 @@
+services:
+  gluetun-riseup:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun-riseup
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - "127.0.0.1:11084:1080"
+    environment:
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=openvpn
+      - OPENVPN_CUSTOM_CONFIG=/gluetun/riseup.ovpn
+      - OPENVPN_USER=${RISEUP_VPN_USER}
+      - OPENVPN_PASSWORD=${RISEUP_VPN_PASSWORD}
+      - SOCKS5_ENABLED=on
+      - SOCKS5_LISTENING_ADDRESS=:1080
+      - SOCKS5_USER=${SOCKS5_USER}
+      - SOCKS5_PASSWORD=${SOCKS5_PASSWORD}
+    volumes:
+      - ./riseup.ovpn:/gluetun/riseup.ovpn:ro

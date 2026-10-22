@@ -1,0 +1,25 @@
+services:
+  psiphon-internal:
+    image: thepsiphonguys/psiphon:latest
+    container_name: psiphon-internal
+    restart: unless-stopped
+    networks:
+      - proxy-net
+
+  psiphon-gateway:
+    image: gogost/gost:latest
+    container_name: psiphon-gateway
+    restart: unless-stopped
+    ports:
+      - "11083:1080"
+    command: >
+      -L "socks5://${PSIPHON_SOCKS_USER}:${PSIPHON_SOCKS_PASS}@:1080"
+      -F "socks5://psiphon-internal:1080"
+    depends_on:
+      - psiphon-internal
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    driver: bridge

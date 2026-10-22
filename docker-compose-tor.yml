@@ -1,0 +1,9 @@
+services:
+  tor-socks-secure:
+    image: litehex/torproxy:latest
+    container_name: tor-socks-secure
+    restart: unless-stopped
+    ports:
+      - "11082:1080"
+    command: >
+      -L "socks5://${TOR_SOCKS_USER}:${TOR_SOCKS_PASS}@:1080"

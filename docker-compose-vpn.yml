@@ -21,4 +21,4 @@ services:
       - INIT_USERNAME=admin
       - INIT_PASSWORD=${INIT_PASSWORD}
       - INSECURE=true
-       - DISABLE_IPV6=true
+      - DISABLE_IPV6=true
